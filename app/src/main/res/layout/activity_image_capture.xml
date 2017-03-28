@@ -21,18 +21,25 @@
 
 
 
-    <ImageView
+    <com.freakstar.eyedoc.myapplication.model.FaceOverlayView
         android:id="@+id/ivImage"
         android:layout_width="fill_parent"
         android:layout_height="400dp"
 
-        android:src="@drawable/camera"
+
         />
     <Button
         android:id="@+id/btnSelectPhoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Select Photo"
+        android:textColor="@android:color/white"
+        android:background="@drawable/flat_selector"/>
+    <Button
+        android:id="@+id/proceedFurther"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Proceed Further"
         android:textColor="@android:color/white"
         android:background="@drawable/flat_selector"/>
 

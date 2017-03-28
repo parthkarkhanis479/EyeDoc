@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.freakstar.eyedoc.myapplication.activity.DiseaseDescription">
+    <LinearLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+
+        tools:context="com.codeitsuisse.team70.expensetracker.activity.DiseaseDescriptionFragment"
+        >
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="150dp"
+                        android:src="@drawable/adenoviral"
+                        android:scaleType="fitXY"
+                        android:id="@+id/disease_imageView" />
+
+                    <TextView
+
+                        style="@style/Base.TextAppearance.AppCompat.Body1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Adenoviral conjunctivitis (Severity:High)"
+                        android:textSize="20sp"
+                        android:textColor="#F44336"
+                        android:id="@+id/disease_name"
+                        />
+
+                </LinearLayout>
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Base.TextAppearance.AppCompat.Headline"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Symptoms:"
+                        android:textColor="#009688"/>
+
+                    <TextView
+                        style="@style/Base.TextAppearance.AppCompat.Body1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Content here\"
+                        android:id="@+id/symp_textview" />
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Base.TextAppearance.AppCompat.Headline"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#009688"
+                        android:text="Treatment:"
+                        />
+
+                    <TextView
+                        style="@style/Base.TextAppearance.AppCompat.Body1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="20dp"
+                        android:text="Content here"
+                        android:id="@+id/treat_textview" />
+
+                </LinearLayout>
+
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:padding="15dp"
+                android:layout_height="wrap_content"
+                android:text="Search Nearby Clinics"
+                android:id="@+id/location"
+
+
+                android:layout_gravity="center_horizontal"
+                android:textColor="@android:color/white"
+                android:background="@drawable/flat_selector"
+                android:layout_marginTop="10dp"
+
+                android:layout_marginBottom="12dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

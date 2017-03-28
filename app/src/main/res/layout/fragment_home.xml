@@ -2,9 +2,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.freakstar.eyedoc.myapplication.activity.HomeFragment">
 
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/l1">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/eye_home"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Body1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="#009688"
+                android:text="Eye Doc-A Companion To You" />
+
+        </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/l1"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="What we do?"
+            android:textColor="#009688"/>
+
+        <TextView
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:layout_width="fill_parent"
+            android:layout_height="250dp"
+
+            android:text="A walk through a drugstore or an hour in front of the television should convince anyone of the importance that healthy eyes holds in terms of self-image and society’s idea of beauty. Perfect eyes, for most people, a distant dream
+With many of  the eye conditions, the symptoms are neither so common nor so benign. Dozens of different eye disorders exist, with huge variation in symptoms and severity.Many of the people may  get   scared for no reason while others may ignore   a serious  condition.Our application aims to help such people people by informing them  about the  various conditions   and also proposes  the necessary remedial measures." />
+
+    </LinearLayout>
 
 
 </RelativeLayout>

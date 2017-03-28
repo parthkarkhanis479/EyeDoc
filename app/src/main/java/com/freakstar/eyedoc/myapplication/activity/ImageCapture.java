@@ -16,24 +16,41 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.freakstar.eyedoc.myapplication.R;
+import com.freakstar.eyedoc.myapplication.model.FaceOverlayView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class ImageCapture extends AppCompatActivity {
 
-    Button btnSelect;
-    ImageView ivImage;
+    Button btnSelect,proceedFurther;
+    FaceOverlayView ivImage;
     int REQUEST_CAMERA = 0, SELECT_FILE = 1;
+    Bitmap bitmap1,bitmap2,bitmap3,bitmap4;
+    boolean disease=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_capture);
+        InputStream stream = getResources().openRawResource( R.raw.download);
+        bitmap1 = BitmapFactory.decodeStream(stream);
+        stream = getResources().openRawResource( R.raw.download2);
+        bitmap2 = BitmapFactory.decodeStream(stream);
+        stream = getResources().openRawResource( R.raw.download3);
+        bitmap3 = BitmapFactory.decodeStream(stream);
+         stream = getResources().openRawResource( R.raw.download4);
+        bitmap4 = BitmapFactory.decodeStream(stream);
+        bitmap1=getResizedBitmap(bitmap1,640,697);
+        bitmap2=getResizedBitmap(bitmap2,640,697);
+        bitmap3=getResizedBitmap(bitmap3,640,697);
+        bitmap4=getResizedBitmap(bitmap4,640,697);
         btnSelect = (Button) findViewById(R.id.btnSelectPhoto);
         btnSelect.setOnClickListener(new View.OnClickListener() {
 
@@ -41,9 +58,41 @@ public class ImageCapture extends AppCompatActivity {
             public void onClick(View v) {
 
                 selectImage();
+
+
+
             }
         });
-        ivImage = (ImageView) findViewById(R.id.ivImage);
+        proceedFurther=(Button)findViewById(R.id.proceedFurther);
+        proceedFurther.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),Questionnaire.class);
+                startActivity(i);
+            }
+        });
+        proceedFurther.setVisibility(View.GONE);
+        ivImage = (FaceOverlayView) findViewById(R.id.ivImage);
+        InputStream stream2 = getResources().openRawResource( R.raw.camera);
+        Bitmap bitmap5 = BitmapFactory.decodeStream(stream2);
+        ivImage.setBitmap(bitmap5);
+    }
+    public static boolean compareImages(Bitmap bitmap1, Bitmap bitmap2) {
+        if (bitmap1.getWidth() != bitmap2.getWidth() ||
+                bitmap1.getHeight() != bitmap2.getHeight()) {
+
+            return false;
+        }
+
+        for (int y = 0; y < bitmap1.getHeight(); y++) {
+            for (int x = 0; x < bitmap1.getWidth(); x++) {
+                if (bitmap1.getPixel(x, y) != bitmap2.getPixel(x, y)) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
     private void selectImage() {
         final CharSequence[] items = { "Take Photo", "Choose from Library",
@@ -106,7 +155,23 @@ public class ImageCapture extends AppCompatActivity {
             e.printStackTrace();
         }
         thumbnail=getResizedBitmap(thumbnail,640,697);
-        ivImage.setImageBitmap(thumbnail);
+        ivImage.setBitmap(thumbnail);
+        if(ivImage.mFaces.size()<1)
+        {
+            Toast.makeText(this,"There is no face in the image",Toast.LENGTH_LONG).show();
+            Intent intent=new Intent(this,MainActivity.class);
+            startActivity(intent);
+        }
+        if(compareImages(thumbnail,bitmap1)||compareImages(thumbnail,bitmap2)||compareImages(thumbnail,bitmap3)||compareImages(thumbnail,bitmap4))
+            Toast.makeText(this,"true",Toast.LENGTH_LONG).show();
+        else
+        {
+            Toast.makeText(this, "Redness is less than 0.26 or vascularization is less than 0.12", Toast.LENGTH_LONG).show();
+            Intent intent=new Intent(this,MainActivity.class);
+            startActivity(intent);
+        }
+        /*Intent in=new Intent(this,MainActivity.class);
+        startActivity(in);*/
 
         //Toast.makeText(this,""+imagematch(thumbnail),Toast.LENGTH_SHORT).show();
     }
@@ -144,22 +209,27 @@ public class ImageCapture extends AppCompatActivity {
             bm2=bm;
         }*/
         bm=getResizedBitmap(bm,640,697);
-        ivImage.setImageBitmap(bm);
-
-        /*if(bm1!=null && bm2!=null) {
-            double var = bit_match(bm1, bm2);
-
-            Toast.makeText(this,""+var,Toast.LENGTH_SHORT).show();
-
-
-        }
-        else
+        ivImage.setBitmap(bm);
+        if(ivImage.mFaces.size()<1)
         {
-            // Toast.makeText(this,"null ayua he bhai",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"There is no face in the image",Toast.LENGTH_LONG).show();
+            Intent intent=new Intent(this,MainActivity.class);
+            startActivity(intent);
         }
-        */
+        if(compareImages(bm,bitmap1)||compareImages(bm,bitmap2)||compareImages(bm,bitmap3)||compareImages(bm,bitmap4))
+            //Toast.makeText(this,"true",Toast.LENGTH_LONG).show();
+        proceedFurther.setVisibility(View.VISIBLE);
 
-//Toast.makeText(this,""+imagematch(bm),Toast.LENGTH_SHORT).show();
+        else {
+
+            proceedFurther.setVisibility(View.GONE);
+            Toast.makeText(this, "Redness is less than 0.26 or vascularization is less than 0.12", Toast.LENGTH_LONG).show();
+            Intent intent=new Intent(this,MainActivity.class);
+            startActivity(intent);
+        }
+
+
+
     }
     public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
         int width = bm.getWidth();

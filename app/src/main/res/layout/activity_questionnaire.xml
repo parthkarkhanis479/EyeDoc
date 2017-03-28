@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context="com.freakstar.eyedoc.myapplication.activity.Questionnaire">
+    <LinearLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Do you feel burning in your eyes?"
+
+       />
+    <RadioGroup
+        android:orientation="horizontal"
+
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginBottom="20dp"
+        >
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+
+         />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+
+           />
+
+    </RadioGroup>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Do you have watery eyes?"
+
+        />
+    <RadioGroup
+        android:orientation="horizontal"
+
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginBottom="20dp"
+        >
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+
+            />
+
+    </RadioGroup>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Ha the shape of your eye changed?"
+
+        />
+    <RadioGroup
+        android:orientation="horizontal"
+
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginBottom="20dp"
+        >
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+
+            />
+
+    </RadioGroup>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Is there redness in your eye for more than 3 hours?"
+
+        />
+    <RadioGroup
+        android:orientation="horizontal"
+
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginBottom="20dp"
+        >
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+
+            />
+
+    </RadioGroup>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Has your eyesight become blurry?"
+
+        />
+    <RadioGroup
+        android:orientation="horizontal"
+
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginBottom="20dp"
+        >
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+
+            />
+
+    </RadioGroup>
+    <Button
+        android:id="@+id/proceedFurther"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Proceed Further"
+        android:textColor="@android:color/white"
+        android:background="@drawable/flat_selector"/>
+
+</LinearLayout>

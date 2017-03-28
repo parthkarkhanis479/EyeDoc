@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:clickable="true">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="180dp"
+            android:orientation="vertical"
+            android:id="@+id/doctors_linearlayout"
+            >
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:layout_width="fill_parent"
+
+                android:text="Title"
+                android:layout_height="25dp"
+                android:textSize="20sp"
+                android:layout_marginBottom="7dp"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/doc_name"/>
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Body1"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:text="Content here"
+                android:textSize="15sp"
+                android:id="@+id/doc_address"
+                android:layout_marginTop="15dp" />
+
+        </LinearLayout>
+
+
+
+</RelativeLayout>
