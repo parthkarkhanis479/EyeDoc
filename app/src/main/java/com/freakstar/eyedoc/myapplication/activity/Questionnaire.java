@@ -1,6 +1,7 @@
 package com.freakstar.eyedoc.myapplication.activity;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,8 +19,16 @@ public class Questionnaire extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),DiseaseDescription.class);
-                startActivity(intent);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Do something after 100ms
+                        Intent intent=new Intent(getApplicationContext(),DiseaseDescription.class);
+                        startActivity(intent);
+                    }
+                }, 5000);
+                /*Intent intent=new Intent(getApplicationContext(),DiseaseDescription.class);
+                startActivity(intent);*/
             }
         });
     }

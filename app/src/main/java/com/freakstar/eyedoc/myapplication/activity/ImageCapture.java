@@ -45,7 +45,7 @@ public class ImageCapture extends AppCompatActivity {
         bitmap2 = BitmapFactory.decodeStream(stream);
         stream = getResources().openRawResource( R.raw.download3);
         bitmap3 = BitmapFactory.decodeStream(stream);
-         stream = getResources().openRawResource( R.raw.download4);
+        stream = getResources().openRawResource( R.raw.download4);
         bitmap4 = BitmapFactory.decodeStream(stream);
         bitmap1=getResizedBitmap(bitmap1,640,697);
         bitmap2=getResizedBitmap(bitmap2,640,697);
@@ -218,7 +218,7 @@ public class ImageCapture extends AppCompatActivity {
         }
         if(compareImages(bm,bitmap1)||compareImages(bm,bitmap2)||compareImages(bm,bitmap3)||compareImages(bm,bitmap4))
             //Toast.makeText(this,"true",Toast.LENGTH_LONG).show();
-        proceedFurther.setVisibility(View.VISIBLE);
+            proceedFurther.setVisibility(View.VISIBLE);
 
         else {
 
