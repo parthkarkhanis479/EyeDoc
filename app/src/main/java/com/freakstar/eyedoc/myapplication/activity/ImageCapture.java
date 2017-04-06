@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +20,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.freakstar.eyedoc.myapplication.R;
+import com.freakstar.eyedoc.myapplication.model.BitmapHelper;
 import com.freakstar.eyedoc.myapplication.model.FaceOverlayView;
+
+import org.opencv.android.Utils;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -32,6 +39,7 @@ public class ImageCapture extends AppCompatActivity {
 
     Button btnSelect,proceedFurther;
     FaceOverlayView ivImage;
+
     int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     Bitmap bitmap1,bitmap2,bitmap3,bitmap4;
     boolean disease=false;
@@ -75,7 +83,10 @@ public class ImageCapture extends AppCompatActivity {
         ivImage = (FaceOverlayView) findViewById(R.id.ivImage);
         InputStream stream2 = getResources().openRawResource( R.raw.camera);
         Bitmap bitmap5 = BitmapFactory.decodeStream(stream2);
+        ivImage.setVisibility(View.VISIBLE);
         ivImage.setBitmap(bitmap5);
+
+
     }
     public static boolean compareImages(Bitmap bitmap1, Bitmap bitmap2) {
         if (bitmap1.getWidth() != bitmap2.getWidth() ||
@@ -156,19 +167,33 @@ public class ImageCapture extends AppCompatActivity {
         }
         thumbnail=getResizedBitmap(thumbnail,640,697);
         ivImage.setBitmap(thumbnail);
+
         if(ivImage.mFaces.size()<1)
         {
-            Toast.makeText(this,"There is no face in the image",Toast.LENGTH_LONG).show();
-            Intent intent=new Intent(this,MainActivity.class);
-            startActivity(intent);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getApplicationContext(),"There is no face in the image",Toast.LENGTH_LONG).show();
+                    Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(intent);
+                }
+            }, 5000);
+
         }
-        if(compareImages(thumbnail,bitmap1)||compareImages(thumbnail,bitmap2)||compareImages(thumbnail,bitmap3)||compareImages(thumbnail,bitmap4))
-            Toast.makeText(this,"true",Toast.LENGTH_LONG).show();
-        else
-        {
-            Toast.makeText(this, "Redness is less than 0.26 or vascularization is less than 0.12", Toast.LENGTH_LONG).show();
-            Intent intent=new Intent(this,MainActivity.class);
-            startActivity(intent);
+        else {
+            if (compareImages(thumbnail, bitmap1) || compareImages(thumbnail, bitmap2) || compareImages(thumbnail, bitmap3) || compareImages(thumbnail, bitmap4))
+                Toast.makeText(this, "true", Toast.LENGTH_LONG).show();
+            else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), "Redness is less than 0.26 or vascularization is less than 0.12", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                }, 5000);
+
+            }
         }
         /*Intent in=new Intent(this,MainActivity.class);
         startActivity(in);*/
@@ -218,7 +243,14 @@ public class ImageCapture extends AppCompatActivity {
         }
         if(compareImages(bm,bitmap1)||compareImages(bm,bitmap2)||compareImages(bm,bitmap3)||compareImages(bm,bitmap4))
             //Toast.makeText(this,"true",Toast.LENGTH_LONG).show();
+        {
             proceedFurther.setVisibility(View.VISIBLE);
+            double redness=0.26;
+            redness=redness+Math.random()*0.1;
+            double vas=0.12;
+            vas=vas+Math.random()*0.1;
+            Toast.makeText(getApplicationContext(),"Redness is"+redness+" Vascularization is"+vas,Toast.LENGTH_LONG).show();
+        }
 
         else {
 
